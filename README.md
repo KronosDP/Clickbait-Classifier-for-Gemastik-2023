@@ -53,3 +53,14 @@ The "Hasil skor semua model" folder houses the evaluation scores and performance
 ## Credits
 
 We extend our gratitude to the creators of the "CLICK-ID" dataset, William, A., & Sari, Y., for their invaluable contribution to our project. Additionally, we acknowledge the usage of PyTorch, XGBoost, Naive Bayes, and Random Forest libraries in our implementation.
+
+## Citation
+```
+@misc{poli2024anda,
+  title = {Anda Tidak akan Percaya Apa yang Dapat Diselesaikan Data Augmentation dalam Model Clickbait Classifier},
+  author = {Darrel Danadyaksa Poli, Edbert Halim, Patrick Samuel Evans Simanjuntak, Andi Pujo Rahadi},
+  year = {2024},
+  month = {June},
+  abstract = {Clickbait adalah artikel daring dengan judul menyesatkan yang sengaja dibuat untuk menarik pembaca untuk membuka halaman dari berita tersebut. Adanya unsur clickbait pada suatu judul berita dapat menyebabkan disinformasi pada masyarakat dengan minat membaca yang rendah. Penelitian ini bertujuan untuk membuat sebuah model untuk menentukan apakah suatu judul berita mengandung unsur clickbait atau tidak serta menguji model apa yang paling akurat untuk mendeteksi unsur clickbait yang ada pada suatu judul berita. Penelitian ini mengandung pengujian akurasi penentuan apakah suatu judul berita terindikasi mengandung clickbait atau tidak dengan menggunakan empat model, yaitu Indobert, XGBoost, Catboost, serta Naive-Bayes. Model paling akurat yang kami buat dan temukan adalah Indobert dengan accuracy score = 0.83 dan recall score = 0.3 setelah model IndoBERT melalui proses fine-tuning. Selain menggunakan IndoBERT, kami juga melakukan data augmentation pada penelitian ini untuk mencoba kemungkinan lain dalam membantu memperbanyak variasi data yang dapat digunakan.}
+}
+```
