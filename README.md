@@ -1,61 +1,42 @@
 # Clickbait Classifier
 
-## Overview
-
-Welcome to the Clickbait Classifier project repository! This project is focused on detecting clickbait headlines in news articles and social media posts using a diverse set of machine learning models, including PyTorch-based IndoBERT, as well as XGBoost, Naive Bayes, and Random Forest.
-
-## Dataset
-
-For training and evaluating the classifiers, we utilize the "CLICK-ID" dataset, a valuable resource introduced by William, A., & Sari, Y. in their work titled "CLICK-ID: A novel dataset for Indonesian clickbait headlines" (Data in brief, 32, 106231). This dataset provides labeled examples of both clickbait and non-clickbait headlines in Indonesian text, playing a pivotal role in the success of our project.
-
-## IndoBERT
-
-The "IndoBERT" folder constitutes the core aspect of the project, wherein the powerful IndoBERT model is employed. IndoBERT is a pre-trained language model specifically designed for the Indonesian language.
-
-### Clean IndoBERT Stuffs
-
-This sub-folder contains meticulously organized resources related to IndoBERT.
-
-- Datasets for IndoBERT: Here, you can find the datasets specifically tailored for IndoBERT. These datasets have undergone preprocessing and conversion into a suitable input format for fine-tuning. Additionally, we have applied data augmentation techniques, such as deletion, insertion, substitution, and swapping, to enhance the model's robustness.
-
-### Dirty IndoBERT Stuffs
-
-This sub-folder contains crucial resources from the IndoBERT model training process, such as logs and files generated during training and evaluation.
-
-- WandB: [Weights & Biases](https://wandb.ai/) is utilized for experiment tracking and visualization, allowing us to monitor the training progress effectively.
-
-  - Runs: Each sub-folder represents a distinct experiment run, identifiable by a unique identifier.
-
-## XGBoost, Random Forest, Naive Bayes
-
-In this folder, you can find the code pertaining to three traditional machine learning models employed for clickbait classification. We also provide catatan.pdf, which details the architecture used for the models.
-
-### Dataset
-
-This sub-folder contains the dataset used for training XGBoost, Random Forest, and Naive Bayes. Additionally, we have augmented the text data within this folder.
+Detecting clickbait in Indonesian news headlines, built for **Gemastik 2023** (Indonesia's national student tech competition). Four models — IndoBERT (fine-tuned transformer), XGBoost, Random Forest, and Naive Bayes — are trained and compared on the same task, with several data-augmentation strategies (deletion, insertion, substitution, swap) tested to squeeze more signal out of a modest labeled dataset.
 
 ## Results
 
-The "Hasil skor semua model" folder houses the evaluation scores and performance metrics for all the models trained during our experiments. These results are instrumental in comparing the effectiveness of different models, allowing us to identify the best-performing approach.
+| Model | Accuracy | Recall |
+|---|---|---|
+| **IndoBERT (fine-tuned)** | **0.83** | 0.30 |
+| XGBoost / Random Forest / Naive Bayes | see [`model-results/classical-ml-scores.xlsx`](model-results/classical-ml-scores.xlsx) | |
 
-### Instructions to Run the Classifier
+IndoBERT was the best-performing model after fine-tuning and data augmentation. Full experiment logs for all 133 fine-tuning runs are on [Weights & Biases](https://api.wandb.ai/links/aigle-noir/dfjbhiej). Methodology, architecture notes, and the full write-up are in [`Paper.pdf`](Paper.pdf) and [`Catatan.pdf`](Catatan.pdf).
 
-1. Ensure you have installed all the required dependencies.
+## Dataset
 
-2. Prepare the necessary datasets in the appropriate format for training. For the IndoBERT classifier, you can modify the dataset by changing its name. The same applies to the pre-trained model.
+Built on **CLICK-ID**, a labeled dataset of Indonesian clickbait/non-clickbait headlines (William, A., & Sari, Y., *"CLICK-ID: A novel dataset for Indonesian clickbait headlines,"* Data in Brief, 32, 106231).
 
-3. Execute the scripts or notebooks to train each model.
+## Repo structure
 
-4. Utilize the trained models to make predictions on new clickbait headlines.
+- **`IndoBERT/`** — the core model.
+  - `clean/` — preprocessed, augmentation-ready datasets and the main fine-tuning notebook.
+  - `experiments-raw/` — the full experimentation trail: intermediate datasets, augmentation notebooks, and alternate fine-tuning runs (by title, by content, with/without augmentation).
+- **`classical-ml-models/`** — XGBoost, Random Forest, and Naive Bayes baselines, plus the datasets used to train them.
+- **`model-results/`** — evaluation scores for every model, used to compare approaches.
+- **`Paper.pdf`** / **`Catatan.pdf`** — the write-up and architecture notes.
 
-5. Evaluate the performance of your model alongside our model using the metrics provided in the "Hasil skor semua model" folder.
+## Running it
+
+1. Install dependencies for whichever model you're running (PyTorch + Transformers for IndoBERT; scikit-learn + XGBoost for the classical models).
+2. Point the relevant notebook at a dataset from `IndoBERT/clean/datasets/` (IndoBERT) or `classical-ml-models/Dataset/` (classical models) — swap in a different augmented variant to compare.
+3. Run the notebook to train, then evaluate against `model-results/` to compare against our reported scores.
 
 ## Credits
 
-We extend our gratitude to the creators of the "CLICK-ID" dataset, William, A., & Sari, Y., for their invaluable contribution to our project. Additionally, we acknowledge the usage of PyTorch, XGBoost, Naive Bayes, and Random Forest libraries in our implementation.
+Built by Darrel Danadyaksa Poli, Edbert Halim, Patrick Samuel Evans Simanjuntak, and Andi Pujo Rahadi. Thanks to William & Sari for the CLICK-ID dataset.
 
 ## Citation
-```
+
+```bibtex
 @misc{poli2024anda,
   title = {Anda Tidak akan Percaya Apa yang Dapat Diselesaikan Data Augmentation dalam Model Clickbait Classifier},
   author = {Darrel Danadyaksa Poli, Edbert Halim, Patrick Samuel Evans Simanjuntak, Andi Pujo Rahadi},
